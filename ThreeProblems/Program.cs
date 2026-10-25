@@ -11,7 +11,6 @@
 using System.Runtime.CompilerServices;
 
 int choice = 0;
-int score = -1;
 string letter;
 string again;
 Random rng = new Random(4000);
@@ -33,6 +32,7 @@ do
         System.Console.WriteLine();
         System.Console.WriteLine("=== Exercise 1: The Grade Checker ===");
 
+        int score = -1;
 
         //While loop: the number of bad scores is unknown before the loop starts
         while(score < 0 || score > 100)
@@ -77,7 +77,7 @@ do
         System.Console.WriteLine("=== Exercise 2: The Dice Table ===");
         int rollCount = 0;
         int winCount = 0;
-
+        // Do while loop to repeat the dice rolling as long as the user inputs "y"
         do
         {
             rollCount++;
@@ -86,7 +86,7 @@ do
             int total = die1 + die2;
             
             System.Console.Write($"Roll {rollCount}: {die1} and {die2}, total {total}. ");
-
+            // else if Chain to 
             if(die1 == 1 && die2 == 1)
             {
                 System.Console.Write("Snake eyes.");
@@ -114,7 +114,47 @@ do
     {
         System.Console.WriteLine();
         System.Console.WriteLine("=== Exercise 3: The Score Report ===");
-        
+
+        const int NUMBER_OF_SCORES = 5;
+        const int PASSING_SCORE = 60;
+
+        int[] scores = new int[NUMBER_OF_SCORES];
+
+        // for loop because it needs a
+        for (int i = 0; i < scores.Length; i++)
+        {
+            Console.Write($"Score {i + 1}: ");
+            scores[i] = Convert.ToInt32(Console.ReadLine());
+        }
+
+        int total = 0;
+        int highest = scores[0];
+        int passing = 0;
+
+        // foreach loop because it needs every value
+        foreach (int score in scores)
+        {
+            total += score;
+
+            if (score > highest)
+            {
+                highest = score;
+            }
+
+            if (score >= PASSING_SCORE)
+            {
+                passing++;
+            }
+        }
+
+        double average = (double)total / scores.Length;
+
+        Console.WriteLine();
+        Console.WriteLine($"Scores entered: {scores.Length}");
+        Console.WriteLine($"Total: {total}");
+        Console.WriteLine($"Average: {average:F1}");
+        Console.WriteLine($"Highest: {highest}");
+        Console.WriteLine($"Passing: {passing} of {scores.Length}");
     }
 } while (choice != 5);
 
