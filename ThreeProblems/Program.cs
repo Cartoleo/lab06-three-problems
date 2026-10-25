@@ -9,6 +9,9 @@
  */
 
 int choice = 0;
+int score = -1;
+string letter;
+Random rng = new Random(4000);
 
 do
 {
@@ -26,12 +29,50 @@ do
     {
         System.Console.WriteLine();
         System.Console.WriteLine("=== Exercise 1: The Grade Checker ===");
+
+
+        //While loop: the number of bad scores is unknown before the loop starts
+        while(score < 0 || score > 100)
+        {
+            System.Console.Write("Score: ");
+            score = Convert.ToInt32(Console.ReadLine());
+            if(score < 0 || score > 100)
+            {
+                System.Console.WriteLine("A score must be between 0 and 100.");
+            }
+        }
+
+        //if / else if chain that goes from high to low grades
+        if(score >= 90)
+        {
+            letter = "A";
+        }
+        else if(score >= 80)
+        {
+            letter = "B";
+        }
+        else if(score >= 70)
+        {
+            letter = "C";
+        }
+        else if(score >= 60)
+        {
+            letter = "D";
+        }
+        else
+        {
+            letter = "F";
+        }
+
+        System.Console.WriteLine($"{score} earns a {letter}");
     }
+
 
     if(choice == 2 || choice == 4)
     {
         System.Console.WriteLine();
-        System.Console.WriteLine("Choice 2");
+        System.Console.WriteLine("=== Exercise 2: The Dice Table ===");
+
     }
 
     if(choice == 3 || choice == 4)
