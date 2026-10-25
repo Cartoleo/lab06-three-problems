@@ -8,9 +8,12 @@
  *              practices decisions and one of the four loops.
  */
 
+using System.Runtime.CompilerServices;
+
 int choice = 0;
 int score = -1;
 string letter;
+string again;
 Random rng = new Random(4000);
 
 do
@@ -72,13 +75,46 @@ do
     {
         System.Console.WriteLine();
         System.Console.WriteLine("=== Exercise 2: The Dice Table ===");
+        int rollCount = 0;
+        int winCount = 0;
 
+        do
+        {
+            rollCount++;
+            int die1 = rng.Next(1, 7);
+            int die2 = rng.Next(1, 7);
+            int total = die1 + die2;
+            
+            System.Console.Write($"Roll {rollCount}: {die1} and {die2}, total {total}. ");
+
+            if(die1 == 1 && die2 == 1)
+            {
+                System.Console.Write("Snake eyes.");
+            }
+
+            else if(die1 == die2)
+            {
+                System.Console.Write("Doubles!");
+            }
+
+            else if(total == 7 || total == 11)
+            {
+                System.Console.Write("A winner.");
+                winCount++;
+            }
+
+            System.Console.WriteLine();
+
+            System.Console.Write("Roll again? (y/n): ");
+            again = Console.ReadLine().ToLower();
+        }while(again == "y");
     }
 
     if(choice == 3 || choice == 4)
     {
         System.Console.WriteLine();
-        System.Console.WriteLine("Choice 3");
+        System.Console.WriteLine("=== Exercise 3: The Score Report ===");
+        
     }
 } while (choice != 5);
 
